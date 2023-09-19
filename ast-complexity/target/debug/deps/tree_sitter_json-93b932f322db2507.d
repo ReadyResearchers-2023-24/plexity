@@ -1,0 +1,9 @@
+C:\Users\normi\SE_600&610\jeff-normile-artifact\ast-complexity\target\debug\deps\tree_sitter_json-93b932f322db2507.rmeta: C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust/lib.rs C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../src/node-types.json C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../queries/highlights.scm
+
+C:\Users\normi\SE_600&610\jeff-normile-artifact\ast-complexity\target\debug\deps\libtree_sitter_json-93b932f322db2507.rlib: C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust/lib.rs C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../src/node-types.json C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../queries/highlights.scm
+
+C:\Users\normi\SE_600&610\jeff-normile-artifact\ast-complexity\target\debug\deps\tree_sitter_json-93b932f322db2507.d: C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust/lib.rs C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../src/node-types.json C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../queries/highlights.scm
+
+C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust/lib.rs:
+C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../src/node-types.json:
+C:\Users\normi\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tree-sitter-json-0.19.0\bindings/rust\../../queries/highlights.scm:
