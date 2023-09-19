@@ -1,3 +1,6 @@
+// Sample parse program from Haobo Gu, used to demonstrate AST parsing feasibility:
+// https://haobogu.github.io/posts/code-intelligence/tree-sitter/
+
 use tree_sitter::{Node, Parser, Tree};
 fn main() {
     // Create a parser
