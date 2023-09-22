@@ -8,8 +8,9 @@ use std::fs;
 fn read_input_file() -> String {
     let arguments: Vec<String> = env::args().collect();
     let input_filepath = &arguments[1];
-    
-    println!("Input file selected is: {}", input_filepath);
+
+    println!();
+    println!("Selected input file: {}", input_filepath);
 
     let contents = fs::read_to_string(input_filepath)
         .expect("Should have been able to read the file");
@@ -37,6 +38,7 @@ fn build_tree(input_file_contents: String) {
 
     // Print the syntax tree as an S-expression.
     let s_expression = root_node.to_sexp();
+    println!();
     println!("Syntax tree: {}", s_expression);
 }
 
