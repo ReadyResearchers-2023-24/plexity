@@ -1,6 +1,3 @@
-// Sample parse program from Haobo Gu, used to demonstrate AST parsing feasibility:
-// https://haobogu.github.io/posts/code-intelligence/tree-sitter/
-
 use tree_sitter::{Node, Parser, Tree};
 use std::env;
 use std::fs;
@@ -19,6 +16,9 @@ fn read_input_file() -> String {
 }
 
 fn build_tree(input_file_contents: String) {
+    // Much of the code in this function is adapted from a parse program by Haobo Gu:
+    // https://haobogu.github.io/posts/code-intelligence/tree-sitter/
+
     // Create a parser
     let mut parser: Parser = Parser::new();
 
