@@ -5,14 +5,15 @@ use std::fs;
 fn read_input_file() -> String {
     let arguments: Vec<String> = env::args().collect();
     let input_filepath = &arguments[1];
+    //let selected_language = &arguments[2];
 
     println!();
     println!("Selected input file: {}", input_filepath);
 
-    let contents = fs::read_to_string(input_filepath)
+    let file_contents = fs::read_to_string(input_filepath)
         .expect("Should have been able to read the file");
 
-    contents
+    file_contents
 }
 
 fn build_tree(input_file_contents: String) {

@@ -2,6 +2,7 @@
     "name": "super-cool-comp",
     "score": 100, 
     "bugs": [
-        null, "that means nada"
+        null,
+        "that means nada"
     ]
 }
