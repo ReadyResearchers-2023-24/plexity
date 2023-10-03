@@ -40,7 +40,7 @@ fn select_parser(language: String) -> Parser {
 
     match language.as_str() {
         "c" => parser.set_language(tree_sitter_c::language()).unwrap(),
-        //"java" => parser.set_language(tree_sitter_java::language()).unwrap(),
+        "javascript" => parser.set_language(tree_sitter_javascript::language()).unwrap(),
         "json" => parser.set_language(tree_sitter_json::language()).unwrap(),
         "python" => parser.set_language(tree_sitter_python::language()).unwrap(),
         "rust" => parser.set_language(tree_sitter_rust::language()).unwrap(),
