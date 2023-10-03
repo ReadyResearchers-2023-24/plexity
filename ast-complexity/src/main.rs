@@ -1,30 +1,56 @@
 use tree_sitter::{Node, Parser, Tree};
 use std::env;
 use std::fs;
+use std::process;
 
-fn read_input_file() -> String {
-    let arguments: Vec<String> = env::args().collect();
-    let input_filepath: &String = &arguments[1];
-    //let selected_language = &arguments[2];
 
+struct Config {
+    filepath: String,
+    language: String
+}
+
+
+impl Config {
+    fn build(args: &[String]) -> Result<Config, &'static str> {
+        if args.len() < 3 {
+            return Err("both an input filepath and a programming language must be entered as CLI arguments.");
+        }
+
+        let filepath = args[1].clone();
+        let language = args[2].clone();
+
+        Ok(Config { filepath, language })
+    }
+}
+
+
+fn read_file(filepath: String) -> String {
     println!();
-    println!("Selected input file: {}", input_filepath);
+    println!("Selected input file: {}", filepath);
 
-    let file_contents: String = fs::read_to_string(input_filepath)
+    let file_contents: String = fs::read_to_string(filepath)
         .expect("Should have been able to read the file");
 
     return file_contents;
 }
 
-fn build_tree(source_code: String) {
-    // Much of the code in this function is adapted from a parse program by Haobo Gu:
-    // https://haobogu.github.io/posts/code-intelligence/tree-sitter/
 
-    // Create a parser
+fn select_parser(language: String) -> Parser {
     let mut parser: Parser = Parser::new();
 
-    // Set the parser's language (JSON in this case)
-    parser.set_language(tree_sitter_json::language()).unwrap();
+    if language == "json" {
+        parser.set_language(tree_sitter_json::language()).unwrap();
+    } else if language == "rust" {
+        parser.set_language(tree_sitter_rust::language()).unwrap();
+    }
+
+    return parser;
+}
+
+
+fn build_tree(source_code: String, mut parser: Parser) {
+    // Much of the code in this function is adapted from a parse program by Haobo Gu:
+    // https://haobogu.github.io/posts/code-intelligence/tree-sitter/
 
     // Build a syntax tree based on source code stored in a string.
     let parse_tree: Tree = parser.parse(source_code, None).unwrap();  
@@ -43,6 +69,15 @@ fn build_tree(source_code: String) {
 }
 
 fn main() {
-    let input_file_contents: String = read_input_file();
-    build_tree(input_file_contents);
+    let args: Vec<String> = env::args().collect();
+
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
+
+    let file_contents: String = read_file(config.filepath);
+    let parser: Parser = select_parser(config.language);
+
+    build_tree(file_contents, parser);
 }
