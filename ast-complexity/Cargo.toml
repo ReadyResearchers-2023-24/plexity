@@ -10,5 +10,8 @@ cc = "*"
 
 [dependencies]
 tree-sitter = "0.20.3"
+tree-sitter-c = "0.20.6"
+tree-sitter-java = "0.16"
 tree-sitter-json = "0.19.0"
+tree-sitter-python = "0.20.4"
 tree-sitter-rust = "0.20.3"

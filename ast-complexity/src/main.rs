@@ -38,8 +38,14 @@ fn read_file(filepath: String) -> String {
 fn select_parser(language: String) -> Parser {
     let mut parser: Parser = Parser::new();
 
-    if language == "json" {
+    if language == "c" {
+        parser.set_language(tree_sitter_c::language()).unwrap();
+    } else if language == "java" {
+        parser.set_language(tree_sitter_java::language()).unwrap();
+    } else if language == "json" {
         parser.set_language(tree_sitter_json::language()).unwrap();
+    } else if language == "python" {
+        parser.set_language(tree_sitter_python::language()).unwrap();
     } else if language == "rust" {
         parser.set_language(tree_sitter_rust::language()).unwrap();
     }
@@ -58,15 +64,12 @@ fn build_tree(source_code: String, mut parser: Parser) {
     // Get the root node of the syntax tree.
     let root_node: Node = parse_tree.root_node();
 
-    // Get some child nodes (useful for assertion statements; based on blog post)
-    //let array_node: Node = root_node.named_child(0).unwrap();
-    //let number_node: Node = array_node.named_child(0).unwrap();
-
     // Print the syntax tree as an S-expression.
     let s_expression: String = root_node.to_sexp();
     println!();
     println!("Syntax tree: {}", s_expression);
 }
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();
