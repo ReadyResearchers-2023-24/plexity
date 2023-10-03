@@ -38,16 +38,14 @@ fn read_file(filepath: String) -> String {
 fn select_parser(language: String) -> Parser {
     let mut parser: Parser = Parser::new();
 
-    if language == "c" {
-        parser.set_language(tree_sitter_c::language()).unwrap();
-    } else if language == "java" {
-        parser.set_language(tree_sitter_java::language()).unwrap();
-    } else if language == "json" {
-        parser.set_language(tree_sitter_json::language()).unwrap();
-    } else if language == "python" {
-        parser.set_language(tree_sitter_python::language()).unwrap();
-    } else if language == "rust" {
-        parser.set_language(tree_sitter_rust::language()).unwrap();
+    match language.as_str() {
+        "c" => parser.set_language(tree_sitter_c::language()).unwrap(),
+        //"java" => parser.set_language(tree_sitter_java::language()).unwrap(),
+        "json" => parser.set_language(tree_sitter_json::language()).unwrap(),
+        "python" => parser.set_language(tree_sitter_python::language()).unwrap(),
+        "rust" => parser.set_language(tree_sitter_rust::language()).unwrap(),
+        // Need to do something about this "wildcard" match statement (required by compiler)
+        &_ => parser.set_language(tree_sitter_rust::language()).unwrap()
     }
 
     return parser;
