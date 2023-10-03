@@ -52,7 +52,7 @@ fn select_parser(language: String) -> Parser {
 }
 
 
-fn build_tree(source_code: String, mut parser: Parser) {
+fn build_tree(source_code: String, mut parser: Parser) -> String {
     // Much of the code in this function is adapted from a parse program by Haobo Gu:
     // https://haobogu.github.io/posts/code-intelligence/tree-sitter/
 
@@ -62,10 +62,10 @@ fn build_tree(source_code: String, mut parser: Parser) {
     // Get the root node of the syntax tree.
     let root_node: Node = parse_tree.root_node();
 
-    // Print the syntax tree as an S-expression.
+    // Convert the syntax tree to an S-expression.
     let s_expression: String = root_node.to_sexp();
-    println!();
-    println!("Syntax tree: {}", s_expression);
+
+    return s_expression;
 }
 
 
@@ -80,5 +80,7 @@ fn main() {
     let file_contents: String = read_file(config.filepath);
     let parser: Parser = select_parser(config.language);
 
-    build_tree(file_contents, parser);
+    let s_expression: String = build_tree(file_contents, parser);
+    println!();
+    println!("Syntax tree: {}", s_expression);
 }
