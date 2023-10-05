@@ -3,7 +3,6 @@ use std::env;
 use std::fs;
 use std::process;
 
-
 struct Config {
     filepath: String,
     language: String
@@ -69,10 +68,36 @@ fn build_tree(source_code: String, mut parser: Parser) -> String {
 }
 
 
+fn pretty_print(s_expression: String) {
+    let mut depth: i32 = 0;
+    for character in s_expression.chars() {
+        if character == '(' && depth == 0 {
+            depth += 1;
+            print!("{}", character)
+        } else if character == '(' {
+            depth += 1;
+            println!("");
+            for _n in 1..depth {
+                print!("    ");
+            }
+            print!("{}", character);
+        } else if character == ')' {
+            depth -= 1;
+            print!("{}", character);
+            println!("");
+            for _n in 1..depth {
+                print!("    ");
+            }
+        } else {
+            print!("{}", character);
+        }
+    }
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let config = Config::build(&args).unwrap_or_else(|err| {
+    let config: Config = Config::build(&args).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {err}");
         process::exit(1);
     });
@@ -81,6 +106,5 @@ fn main() {
     let parser: Parser = select_parser(config.language);
 
     let s_expression: String = build_tree(file_contents, parser);
-    println!();
-    println!("Syntax tree: {}", s_expression);
+    pretty_print(s_expression);
 }
