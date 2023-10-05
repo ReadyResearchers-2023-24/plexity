@@ -1,6 +1,10 @@
 # jeff-normile-artifact
 Artifact repository for the 2023-2024 SE Senior Comp
 
+## Collected Data
+
+This repository contains a `data` folder that comes prepackaged with a number of sample programs that can be used to see the software artifact in action! Many of these programs are grouped into directories that contain programs that all accomplish the same task (albeit in different languages). These programs were collected from [The Algorithms](https://the-algorithms.com/).
+
 ## About the Software Engineering Process
 
 Given that this is a senior comp project for the Software Engineering major, documentation pertaining to various aspects of the actual software engineering process itself is contained below. 
