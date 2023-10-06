@@ -3,6 +3,7 @@ use std::env;
 use std::fs;
 use std::process;
 
+
 struct Config {
     filepath: String,
     language: String
@@ -69,23 +70,34 @@ fn build_tree(source_code: String, mut parser: Parser) -> String {
 
 
 fn pretty_print(s_expression: String) {
-    let mut depth: i32 = 0;
+    let mut max_depth: i32 = 0;
+    let mut current_depth: i32 = 0;
     for character in s_expression.chars() {
-        if character == '(' && depth == 0 {
-            depth += 1;
+
+        if character == '(' && current_depth == 0 {
+            current_depth += 1;
         } else if character == '(' {
-            depth += 1;
+            current_depth += 1;
             println!("");
-            for _n in 1..depth {
+            for _n in 1..current_depth {
                 print!("----");
             }
         } else if character == ')' {
-            depth -= 1;
+            current_depth -= 1;
         } else {
             print!("{}", character);
         }
+
+        if max_depth < current_depth {
+            max_depth = current_depth;
+        }
     }
+
+    println!();
+    println!();
+    println!("MAXIMUM NESTED DEPTH OF SOURCE PROGRAM IS {}", max_depth);
 }
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();
