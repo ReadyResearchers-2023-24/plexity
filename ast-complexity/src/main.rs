@@ -73,21 +73,14 @@ fn pretty_print(s_expression: String) {
     for character in s_expression.chars() {
         if character == '(' && depth == 0 {
             depth += 1;
-            print!("{}", character)
         } else if character == '(' {
             depth += 1;
             println!("");
             for _n in 1..depth {
-                print!("    ");
+                print!("----");
             }
-            print!("{}", character);
         } else if character == ')' {
             depth -= 1;
-            print!("{}", character);
-            println!("");
-            for _n in 1..depth {
-                print!("    ");
-            }
         } else {
             print!("{}", character);
         }
@@ -106,5 +99,6 @@ fn main() {
     let parser: Parser = select_parser(config.language);
 
     let s_expression: String = build_tree(file_contents, parser);
+    println!("");
     pretty_print(s_expression);
 }
