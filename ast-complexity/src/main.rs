@@ -53,9 +53,6 @@ fn select_parser(language: String) -> Parser {
 
 
 fn build_tree(source_code: String, mut parser: Parser) {
-    // Much of the code in this function is adapted from a parse program by Haobo Gu:
-    // https://haobogu.github.io/posts/code-intelligence/tree-sitter/
-
     // Build a syntax tree based on source code stored in a string.
     let parse_tree: Tree = parser.parse(source_code, None).unwrap();
 
