@@ -52,34 +52,21 @@ fn select_parser(language: String) -> Parser {
 }
 
 
-fn build_tree(source_code: String, mut parser: Parser) {
-    // Build a syntax tree based on source code stored in a string.
-    let parse_tree: Tree = parser.parse(source_code, None).unwrap();
+fn traverse_tree(source_code: String, mut parser: Parser) {
 
-    // Get the root node of the syntax tree.
+    let parse_tree: Tree = parser.parse(source_code, None).unwrap();
     let root_node: Node = parse_tree.root_node();
 
-    // Convert the syntax tree to an S-expression (sanity check; will ultimately remove).
-    let s_expression: String = root_node.to_sexp();
-
-    // Pretty print the S-expression (sanity check; will ultimately remove)
-    /*
-    println!("");
-    pretty_print(s_expression.clone());
-    println!("");
-    println!("{}", s_expression);
-    */
-
     // Unpack nodes recursively, starting with the root node
-    let mut current_depth = 0;
-    let mut maximum_depth = 0;
-    let maximum_depth = unpack_node(root_node, current_depth, maximum_depth);
+    let current_depth: i32 = 0;
+    let starting_maximum_depth: i32 = 0;
+    let concluding_maximum_depth: i32 = unpack_node(root_node, current_depth, starting_maximum_depth);
     println!("");
-    println!("MAXIMUM DEPTH CALCULATED BY NODE UNPACK IS: {}", maximum_depth);
+    println!("MAXIMUM DEPTH CALCULATED BY NODE UNPACK IS: {}", concluding_maximum_depth);
 }
 
 
-fn unpack_node(node: Node, mut current_depth: i32, mut maximum_depth: i32) -> i32 {
+fn unpack_node(node: Node, current_depth: i32, mut maximum_depth: i32) -> i32 {
     for i in 0..node.child_count() {
         let child = node.child(i).unwrap();
         let child_range: Range = child.range();
@@ -98,37 +85,6 @@ fn unpack_node(node: Node, mut current_depth: i32, mut maximum_depth: i32) -> i3
     
 }
 
-/*
-fn pretty_print(s_expression: String) {
-    let mut max_depth: i32 = 0;
-    let mut current_depth: i32 = 0;
-    for character in s_expression.chars() {
-
-        if character == '(' && current_depth == 0 {
-            current_depth += 1;
-        } else if character == '(' {
-            current_depth += 1;
-            println!("");
-            for _n in 1..current_depth {
-                print!("----");
-            }
-        } else if character == ')' {
-            current_depth -= 1;
-        } else {
-            print!("{}", character);
-        }
-
-        if max_depth < current_depth {
-            max_depth = current_depth;
-        }
-    }
-
-    println!();
-    println!();
-    println!("MAXIMUM NESTED DEPTH OF SOURCE PROGRAM (VIA S-EXPRESSION) IS {}", max_depth);
-}
-*/
-
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -141,5 +97,5 @@ fn main() {
     let file_contents: String = read_file(config.filepath);
     let parser: Parser = select_parser(config.language);
 
-    build_tree(file_contents, parser);
+    traverse_tree(file_contents, parser);
 }
