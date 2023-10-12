@@ -96,16 +96,6 @@ fn unpack_node(node: Node, mut current_depth: i32, mut maximum_depth: i32) -> i3
 }
 
 
-fn find_start_point(source_code: String, mut parser: Parser) -> Point {
-    let parse_tree: Tree = parser.parse(source_code, None).unwrap();
-    let root_node: Node = parse_tree.root_node();
-    let root_node_range: Range = root_node.range();
-    let start_point: Point = root_node_range.start_point;
-
-    return start_point;
-}
-
-
 fn pretty_print(s_expression: String) {
     let mut max_depth: i32 = 0;
     let mut current_depth: i32 = 0;
