@@ -8,7 +8,7 @@ This project requires a working Rust installation. It's recommended to use `rust
 
 ## Running `plexity`
 
-After cloning this Git repository onto your device, navigate to the `plexity` directory within your preferred terminal. From there, run the following command:
+After cloning this Git repository onto your device, navigate to the inner `plexity` directory within your preferred terminal. From there, run the following command:
 
 ```
 cargo run -- data/python/hello-world.py python
