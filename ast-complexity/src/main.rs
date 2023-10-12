@@ -1,4 +1,4 @@
-use tree_sitter::{Node, Parser, Tree};
+use tree_sitter::{Node, Parser, Tree, Range, Point};
 use std::env;
 use std::fs;
 use std::process;
@@ -52,20 +52,60 @@ fn select_parser(language: String) -> Parser {
 }
 
 
-fn build_tree(source_code: String, mut parser: Parser) -> String {
+fn build_tree(source_code: String, mut parser: Parser) {
     // Much of the code in this function is adapted from a parse program by Haobo Gu:
     // https://haobogu.github.io/posts/code-intelligence/tree-sitter/
 
     // Build a syntax tree based on source code stored in a string.
-    let parse_tree: Tree = parser.parse(source_code, None).unwrap();  
+    let parse_tree: Tree = parser.parse(source_code, None).unwrap();
 
     // Get the root node of the syntax tree.
     let root_node: Node = parse_tree.root_node();
 
-    // Convert the syntax tree to an S-expression.
+    // Convert the syntax tree to an S-expression (sanity check; will ultimately remove).
     let s_expression: String = root_node.to_sexp();
 
-    return s_expression;
+    // Pretty print the S-expression (sanity check; will ultimately remove)
+    println!("");
+    pretty_print(s_expression);
+    println!("");
+
+    // Unpack nodes recursively, starting with the root node
+    let mut current_depth = 0;
+    let mut maximum_depth = 0;
+    let maximum_depth: i32 = unpack_node(root_node, current_depth, maximum_depth);
+    println!("MAXIMUM DEPTH CALCULATED BY NODE UNPACK IS: {}", maximum_depth);
+}
+
+
+fn unpack_node(node: Node, mut current_depth: i32, mut maximum_depth: i32) -> i32 {
+    for i in 0..node.child_count() {
+        let child = node.child(i).unwrap();
+        let child_range: Range = child.range();
+
+        // Print node ranges (a sanity check to ultimately be removed)
+        //println!("{} {}", child_range.start_point, child_range.end_point);
+        current_depth += 1;
+
+        if current_depth > maximum_depth {
+            maximum_depth = current_depth;
+        };
+
+        unpack_node(child, current_depth, maximum_depth);
+    }
+
+    return maximum_depth;
+    
+}
+
+
+fn find_start_point(source_code: String, mut parser: Parser) -> Point {
+    let parse_tree: Tree = parser.parse(source_code, None).unwrap();
+    let root_node: Node = parse_tree.root_node();
+    let root_node_range: Range = root_node.range();
+    let start_point: Point = root_node_range.start_point;
+
+    return start_point;
 }
 
 
@@ -95,7 +135,7 @@ fn pretty_print(s_expression: String) {
 
     println!();
     println!();
-    println!("MAXIMUM NESTED DEPTH OF SOURCE PROGRAM IS {}", max_depth);
+    println!("MAXIMUM NESTED DEPTH OF SOURCE PROGRAM (VIA S-EXPRESSION) IS {}", max_depth);
 }
 
 
@@ -110,7 +150,5 @@ fn main() {
     let file_contents: String = read_file(config.filepath);
     let parser: Parser = select_parser(config.language);
 
-    let s_expression: String = build_tree(file_contents, parser);
-    println!("");
-    pretty_print(s_expression);
+    build_tree(file_contents, parser);
 }
