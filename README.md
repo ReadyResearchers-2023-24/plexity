@@ -1,19 +1,20 @@
-# jeff-normile-artifact
-Artifact repository for the 2023-2024 SE Senior Comp
+[Artifact repository for Jeff Normile's 2023-2024 SE Senior Comp]
+
+# Introducing `plexity`
 
 ## Installing Rust
 
 This project requires a working Rust installation. It's recommended to use `rustup`, a version manager that makes the installation process incredibly straightforward. Instructions for completing this installation can be located on this page of the official [*The Rust Programming Language*](https://doc.rust-lang.org/book/ch01-01-installation.html) documentation, though the highlights are provided below.
 
-## Running `ast-complexity`
+## Running `plexity`
 
-After cloning this Git repository onto your device, navigate to the `ast-complexity` directory within your preferred terminal. From there, run the following command:
+After cloning this Git repository onto your device, navigate to the `plexity` directory within your preferred terminal. From there, run the following command:
 
 ```
 cargo run -- data/python/hello-world.py python
 ```
 
-This will build and run the `ast-complexity` tool using the prepackaged `hello-world.py` file included with the repository.
+This will build and run the `plexity` tool using the prepackaged `hello-world.py` file included with the repository.
 
 The `data/python/hello-world.py` and `python` arguments can be replaced with a relative path to a file of your own choosing, as well as the programming language that the file is written in.
 
