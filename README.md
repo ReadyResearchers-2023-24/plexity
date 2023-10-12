@@ -13,7 +13,7 @@ After cloning this Git repository onto your device, navigate to the `ast-complex
 cargo run -- data/python/hello-world.py python
 ```
 
-This will run the `ast-complexity` tool using the prepackaged `hello-world.py` file included with the repository.
+This will build and run the `ast-complexity` tool using the prepackaged `hello-world.py` file included with the repository.
 
 The `data/python/hello-world.py` and `python` arguments can be replaced with a relative path to a file of your own choosing, as well as the programming language that the file is written in.
 
