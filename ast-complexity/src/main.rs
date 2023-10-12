@@ -1,4 +1,4 @@
-use tree_sitter::{Node, Parser, Tree, Range, Point};
+use tree_sitter::{Node, Parser, Tree, Range};
 use std::env;
 use std::fs;
 use std::process;
@@ -63,14 +63,17 @@ fn build_tree(source_code: String, mut parser: Parser) {
     let s_expression: String = root_node.to_sexp();
 
     // Pretty print the S-expression (sanity check; will ultimately remove)
+    /*
     println!("");
-    pretty_print(s_expression);
+    pretty_print(s_expression.clone());
     println!("");
+    println!("{}", s_expression);
+    */
 
     // Unpack nodes recursively, starting with the root node
     let mut current_depth = 0;
     let mut maximum_depth = 0;
-    let maximum_depth: i32 = unpack_node(root_node, current_depth, maximum_depth);
+    let maximum_depth = unpack_node(root_node, current_depth, maximum_depth);
     println!("");
     println!("MAXIMUM DEPTH CALCULATED BY NODE UNPACK IS: {}", maximum_depth);
 }
@@ -81,22 +84,21 @@ fn unpack_node(node: Node, mut current_depth: i32, mut maximum_depth: i32) -> i3
         let child = node.child(i).unwrap();
         let child_range: Range = child.range();
 
-        // Print node ranges (a sanity check to ultimately be removed)
-        println!("{} {} {} {}", current_depth, child_range.start_point, child_range.end_point, child.to_sexp());
-        current_depth += 1;
-
         if current_depth > maximum_depth {
             maximum_depth = current_depth;
         };
 
-        unpack_node(child, current_depth, maximum_depth);
+        // Print node ranges (a sanity check to ultimately be removed)
+        println!("{}/{}: {} {} {}", current_depth, maximum_depth, child_range.start_point, child_range.end_point, child.to_sexp());
+
+        maximum_depth = unpack_node(child, current_depth+1, maximum_depth);
     }
 
     return maximum_depth;
     
 }
 
-
+/*
 fn pretty_print(s_expression: String) {
     let mut max_depth: i32 = 0;
     let mut current_depth: i32 = 0;
@@ -125,6 +127,7 @@ fn pretty_print(s_expression: String) {
     println!();
     println!("MAXIMUM NESTED DEPTH OF SOURCE PROGRAM (VIA S-EXPRESSION) IS {}", max_depth);
 }
+*/
 
 
 fn main() {
