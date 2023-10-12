@@ -3,15 +3,7 @@ Artifact repository for the 2023-2024 SE Senior Comp
 
 ## Installing Rust
 
-This project requires a working Rust installation. It's recommended to use `rustup`, a version manager that makes the installation process incredibly straightforward.
-
-On Linux or Mac, use the following command to install `rustup` (which will also install the latest stable version of Rust):
-
-```
-curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-```
-
-On Windows, use [this link](https://www.rust-lang.org/tools/install) to the official Rust download page to download the appropriate `rustup` tool and stable Rust release for your system architecture.
+This project requires a working Rust installation. It's recommended to use `rustup`, a version manager that makes the installation process incredibly straightforward. Instructions for completing this installation can be located on this page of the official [*The Rust Programming Language*](https://doc.rust-lang.org/book/ch01-01-installation.html) documentation, though the highlights are provided below.
 
 ## Running `ast-complexity`
 
