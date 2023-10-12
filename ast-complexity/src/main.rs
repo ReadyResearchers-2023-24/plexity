@@ -71,6 +71,7 @@ fn build_tree(source_code: String, mut parser: Parser) {
     let mut current_depth = 0;
     let mut maximum_depth = 0;
     let maximum_depth: i32 = unpack_node(root_node, current_depth, maximum_depth);
+    println!("");
     println!("MAXIMUM DEPTH CALCULATED BY NODE UNPACK IS: {}", maximum_depth);
 }
 
@@ -81,7 +82,7 @@ fn unpack_node(node: Node, mut current_depth: i32, mut maximum_depth: i32) -> i3
         let child_range: Range = child.range();
 
         // Print node ranges (a sanity check to ultimately be removed)
-        //println!("{} {}", child_range.start_point, child_range.end_point);
+        println!("{} {} {} {}", current_depth, child_range.start_point, child_range.end_point, child.to_sexp());
         current_depth += 1;
 
         if current_depth > maximum_depth {
