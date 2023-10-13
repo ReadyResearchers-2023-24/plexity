@@ -34,6 +34,9 @@ fn read_file(filepath: String) -> String {
 fn select_parser(language: String) -> Parser {
     let mut parser: Parser = Parser::new();
 
+    println!("Selected programming language grammar: {}", language);
+    println!();
+
     match language.as_str() {
         "c" => parser.set_language(tree_sitter_c::language()).unwrap(),
         "javascript" => parser
@@ -60,7 +63,7 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
         unpack_node(root_node, current_depth, starting_maximum_depth);
     println!("");
     println!(
-        "MAXIMUM DEPTH CALCULATED BY NODE UNPACK IS: {}",
+        "Maximum depth or \"nestedness\" of syntax tree: {}",
         concluding_maximum_depth
     );
 }
