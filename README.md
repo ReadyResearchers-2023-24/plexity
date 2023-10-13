@@ -8,9 +8,13 @@ Contemporary enterprise-level code complexity metrics--such as [SonarQube's cogn
 
 `plexity` is an argument that code "complexity"--and synonymous ideas like "maintainability" or "legibility"--is more granular than discrete lines of code; rather, it's discrete *units of logic* (as defined by a syntax tree)--when strung together or nested within one another at scale--that contribute to complexity and difficulty for the human parser.
 
+# Setting up `plexity`
+
 ## Installing Rust
 
 This project requires a working Rust installation. It's recommended to use `rustup`, a version manager that makes the installation process incredibly straightforward. Instructions for completing this installation can be located on this page of the official [*The Rust Programming Language*](https://doc.rust-lang.org/book/ch01-01-installation.html) documentation, though the highlights are provided below.
+
+# Using `plexity`
 
 ## Running `plexity`
 
@@ -38,11 +42,11 @@ Currently, this tool supports five programming languages, with the goal to expan
 
 This repository contains a `data` folder that comes prepackaged with a number of sample programs that can be used to see the software artifact in action! Many of these programs are grouped into directories that contain programs that all accomplish the same task (albeit in different languages). These programs were collected from [The Algorithms](https://the-algorithms.com/).
 
-## About the Software Engineering Process
+# About the Software Engineering Process
 
 Given that this is a senior comp project for the Software Engineering major, documentation pertaining to various aspects of the actual software engineering process itself is contained below. 
 
-### User Stories
+## User Stories
 
 According to the folks at [Atlassian](https://www.atlassian.com/agile/project-management/user-stories), the company behind popular enterprise-level software engineering solutions like Confluence and Jira, a user story is "an informal, general explanation of a software feature written from the perspective of the end user".
 
