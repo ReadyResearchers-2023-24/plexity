@@ -2,6 +2,8 @@
 
 # Introducing `plexity`
 
+TODO: Introduce `plexity`--what is its aim, what does it do, etc.
+
 ## Installing Rust
 
 This project requires a working Rust installation. It's recommended to use `rustup`, a version manager that makes the installation process incredibly straightforward. Instructions for completing this installation can be located on this page of the official [*The Rust Programming Language*](https://doc.rust-lang.org/book/ch01-01-installation.html) documentation, though the highlights are provided below.
@@ -16,7 +18,7 @@ cargo run -- data/python/hello-world.py python
 
 This will build and run the `plexity` tool using the prepackaged `hello-world.py` file included with the repository.
 
-The `data/python/hello-world.py` and `python` arguments can be replaced with a relative path to a file of your own choosing, as well as the programming language that the file is written in.
+The `data/python/hello-world.py` and `python` arguments can be replaced with a relative path to a file of your own choosing, as well as the programming language that the file is written in (see below for a list of supported languages).
 
 ## Supported Languages
 
