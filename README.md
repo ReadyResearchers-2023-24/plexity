@@ -6,7 +6,7 @@
 
 Contemporary enterprise-level code complexity metrics--such as [SonarQube's cognitive complexity](https://www.sonarsource.com/docs/CognitiveComplexity.pdf)--use levels of nestedness (in terms of control flow) as a baseline metric for attempting to calculate how "complex" a piece of code is. Critically, these metrics only consider control flow at large (e.g., an if statement nested inside another if statement) and fail to consider how logic can be "nested" within other pieces of logic within an individual line of code (e.g., a Pythonic lambda expression, a Java ternary operator, or complex data structures that involve the nesting of structures within other structures).
 
-`plexity` is an argument that code "complexity"--and synonymous ideas like "maintainability" or "legibility"--is more granular than discrete lines of code; rather, it's discrete *units of logic*--when strung together or nested within one another at scale--that contribute to complexity and difficulty for the human parser.
+`plexity` is an argument that code "complexity"--and synonymous ideas like "maintainability" or "legibility"--is more granular than discrete lines of code; rather, it's discrete *units of logic* (as defined by a syntax tree)--when strung together or nested within one another at scale--that contribute to complexity and difficulty for the human parser.
 
 ## Installing Rust
 
