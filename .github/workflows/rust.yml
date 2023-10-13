@@ -21,8 +21,10 @@ jobs:
         cd plexity
         cargo build --verbose
 
-    - name: Check formatting of Rust code with rustfmt
-      uses: actions-rust-lang/rustfmt@v1.1.0
+    - name: Run cargo fmt
+      run: |
+        cd plexity
+        cargo fmt --all
 
     - name: Run tests
       run: |
