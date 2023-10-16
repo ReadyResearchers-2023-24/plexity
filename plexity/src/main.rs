@@ -48,6 +48,7 @@ fn select_parser(language: String) -> Parser {
         "markdown" => parser.set_language(tree_sitter_md::language()).unwrap(),
         "python" => parser.set_language(tree_sitter_python::language()).unwrap(),
         "rust" => parser.set_language(tree_sitter_rust::language()).unwrap(),
+        "toml" => parser.set_language(tree_sitter_toml::language()).unwrap(),
         // Need to do something about this "wildcard" match statement (required by compiler)
         &_ => parser.set_language(tree_sitter_rust::language()).unwrap(),
     }
