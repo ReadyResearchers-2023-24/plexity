@@ -39,6 +39,7 @@ fn select_parser(language: String) -> Parser {
 
     match language.as_str() {
         "c" => parser.set_language(tree_sitter_c::language()).unwrap(),
+        "dockerfile" => parser.set_language(tree_sitter_dockerfile::language()).unwrap(),
         "javascript" => parser
             .set_language(tree_sitter_javascript::language())
             .unwrap(),
