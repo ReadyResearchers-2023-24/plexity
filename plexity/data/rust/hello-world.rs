@@ -1,0 +1,5 @@
+println!("Hello world")
+println!("Hello, programmer")
+println!("How are you today?")
+println!("I'm good thanks")
+println!("And you?")
