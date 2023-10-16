@@ -30,13 +30,17 @@ The `data/python/hello-world.py` and `python` arguments can be replaced with a r
 
 ## Supported Languages
 
-Currently, this tool supports five programming languages, with the goal to expand this to include the wide ecosystem of open source `tree-sitter` grammars currently available. The currently supported languages are:
+Currently, this tool supports the below programming languages, with the goal to expand this to include the wide ecosystem of open source `tree-sitter` grammars currently available. The currently supported languages are:
 
 * C
+* Dockerfile
+* Java
 * JavaScript
 * JSON
+* Markdown
 * Python
 * Rust
+* TOML
 
 ## Collected Data
 
