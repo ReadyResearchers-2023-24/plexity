@@ -44,7 +44,9 @@ Currently, this tool supports the below programming languages, with the goal to 
 
 ## Collected Data
 
-This repository contains a `data` folder that comes prepackaged with a number of sample programs that can be used to see the software artifact in action! Many of these programs are grouped into directories that contain programs that all accomplish the same task (albeit in different languages). These programs were collected from [The Algorithms](https://the-algorithms.com/).
+This repository contains a `data` folder that comes prepackaged with a number of sample programs that can be used to see the software artifact in action! Many of these programs are grouped into directories that contain programs that all accomplish the same task (albeit in different languages). Programs in collections like this (such as `data/fibonacci/`) were collected from [The Algorithms](https://the-algorithms.com/).
+
+Any other program not contained in a single task collection like this were either written by the tool creator (often in the case of "toy" programs with little real utility) or are otherwise cited within the comments of the program if collected from some other open source reference.
 
 # About the Software Engineering Process
 
