@@ -76,7 +76,12 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     );
 }
 
-fn unpack_node(node: Node, mut node_count: i32, current_depth: i32, mut maximum_depth: i32) -> (i32, i32) {
+fn unpack_node(
+    node: Node,
+    mut node_count: i32,
+    current_depth: i32,
+    mut maximum_depth: i32,
+) -> (i32, i32) {
     for i in 0..node.child_count() {
         node_count += 1;
         let child = node.child(i).unwrap();
@@ -97,7 +102,8 @@ fn unpack_node(node: Node, mut node_count: i32, current_depth: i32, mut maximum_
             child.to_sexp()
         );
 
-        (node_count, maximum_depth) = unpack_node(child, node_count, current_depth + 1, maximum_depth);
+        (node_count, maximum_depth) =
+            unpack_node(child, node_count, current_depth + 1, maximum_depth);
     }
 
     return (node_count, maximum_depth);
