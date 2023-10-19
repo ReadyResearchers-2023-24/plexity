@@ -63,19 +63,22 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     let root_node: Node = parse_tree.root_node();
 
     // Unpack nodes recursively, starting with the root node
+    let mut node_count: i32 = 0;
     let current_depth: i32 = 0;
     let starting_maximum_depth: i32 = 0;
-    let concluding_maximum_depth: i32 =
-        unpack_node(root_node, current_depth, starting_maximum_depth);
+    let concluding_maximum_depth: i32;
+    (node_count, concluding_maximum_depth) =
+        unpack_node(root_node, node_count, current_depth, starting_maximum_depth);
     println!("");
     println!(
-        "Maximum depth or \"nestedness\" of syntax tree: {}",
-        concluding_maximum_depth
+        "{} nodes traversed; maximum depth of syntax tree: {}",
+        node_count, concluding_maximum_depth
     );
 }
 
-fn unpack_node(node: Node, current_depth: i32, mut maximum_depth: i32) -> i32 {
+fn unpack_node(node: Node, mut node_count: i32, current_depth: i32, mut maximum_depth: i32) -> (i32, i32) {
     for i in 0..node.child_count() {
+        node_count += 1;
         let child = node.child(i).unwrap();
         let child_range: Range = child.range();
 
@@ -85,7 +88,8 @@ fn unpack_node(node: Node, current_depth: i32, mut maximum_depth: i32) -> i32 {
 
         // Print node ranges (a sanity check to ultimately be removed)
         println!(
-            "{}/{}: {} {} {}",
+            "#{} | depth:{}/{} | beg:{} end:{} | s-exp: {}",
+            node_count,
             current_depth,
             maximum_depth,
             child_range.start_point,
@@ -93,10 +97,10 @@ fn unpack_node(node: Node, current_depth: i32, mut maximum_depth: i32) -> i32 {
             child.to_sexp()
         );
 
-        maximum_depth = unpack_node(child, current_depth + 1, maximum_depth);
+        (node_count, maximum_depth) = unpack_node(child, node_count, current_depth + 1, maximum_depth);
     }
 
-    return maximum_depth;
+    return (node_count, maximum_depth);
 }
 
 fn main() {
