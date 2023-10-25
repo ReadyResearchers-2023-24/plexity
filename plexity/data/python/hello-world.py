@@ -1,5 +1,1 @@
 print("Hello world")
-print("Hello, programmer")
-print("How are you today?")
-print("I'm good thanks")
-print("And you?")
