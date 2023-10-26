@@ -68,13 +68,17 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     let current_depth: i32 = 0;
     let starting_maximum_depth: i32 = 0;
     let concluding_maximum_depth: i32;
-    (node_count, concluding_maximum_depth, plexity_score) =
-        unpack_node(root_node, node_count, current_depth, starting_maximum_depth, plexity_score);
-    println!("");
-    println!(
-        "{} nodes traversed; maximum depth of syntax tree: {}; weighted plexity score: {}",
-        node_count, concluding_maximum_depth, plexity_score/10
+    (node_count, concluding_maximum_depth, plexity_score) = unpack_node(
+        root_node,
+        node_count,
+        current_depth,
+        starting_maximum_depth,
+        plexity_score,
     );
+    println!("");
+    println!("Number of nodes found in tree: {}", node_count);
+    println!("Maximum depth of syntax tree: {}", concluding_maximum_depth);
+    println!("Combined weights of all nodes: {}", plexity_score);
 }
 
 fn unpack_node(
@@ -82,7 +86,7 @@ fn unpack_node(
     mut node_count: i32,
     current_depth: i32,
     mut maximum_depth: i32,
-    mut plexity_score: i32
+    mut plexity_score: i32,
 ) -> (i32, i32, i32) {
     for i in 0..node.child_count() {
         node_count += 1;
@@ -106,8 +110,13 @@ fn unpack_node(
 
         plexity_score += current_depth;
 
-        (node_count, maximum_depth, plexity_score) =
-            unpack_node(child, node_count, current_depth + 1, maximum_depth, plexity_score);
+        (node_count, maximum_depth, plexity_score) = unpack_node(
+            child,
+            node_count,
+            current_depth + 1,
+            maximum_depth,
+            plexity_score,
+        );
     }
 
     return (node_count, maximum_depth, plexity_score);
