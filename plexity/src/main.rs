@@ -81,7 +81,10 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     println!("Combined weights of all nodes: {}", plexity_score);
     let plexity_score_float = plexity_score as f32;
     let node_count_float = node_count as f32;
-    println!("Average depth across syntax tree: {}", plexity_score_float/node_count_float)
+    println!(
+        "Average depth across syntax tree: {}",
+        plexity_score_float / node_count_float
+    )
 }
 
 fn unpack_node(
