@@ -152,7 +152,10 @@ fn cyclomatic_check(s_expression: String) -> bool {
         || s_expression.starts_with("(except_clause")
         || s_expression.starts_with("(with_statement")
         || s_expression.starts_with("(assert_statement")
-        || s_expression.starts_with("(list_comprehension");
+        || s_expression.starts_with("(list_comprehension")
+        || s_expression.starts_with("(set_comprehension")
+        || s_expression.starts_with("(dictionary_comprehension")
+        || s_expression.starts_with("(boolean_operator");
 }
 
 fn main() {
