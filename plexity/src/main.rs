@@ -69,13 +69,18 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     let starting_maximum_depth: i32 = 0;
     let concluding_maximum_depth: i32;
     let mut cyclomatic_count: i32 = 0;
-    (node_count, concluding_maximum_depth, plexity_score, cyclomatic_count) = unpack_node(
+    (
+        node_count,
+        concluding_maximum_depth,
+        plexity_score,
+        cyclomatic_count,
+    ) = unpack_node(
         root_node,
         node_count,
         current_depth,
         starting_maximum_depth,
         plexity_score,
-        cyclomatic_count
+        cyclomatic_count,
     );
     println!("\n\n============ PLEXITY SCORECARD ============\n");
     println!("  - Number of nodes found in tree: {}", node_count);
@@ -90,8 +95,7 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
         "  - Average depth across syntax tree: {:.2}",
         plexity_score_float / node_count_float
     );
-    println!(
-        "  - Cyclomatic complexity: {}", cyclomatic_count +1);
+    println!("  - Cyclomatic complexity: {}", cyclomatic_count + 1);
 }
 
 fn unpack_node(
@@ -100,7 +104,7 @@ fn unpack_node(
     current_depth: i32,
     mut maximum_depth: i32,
     mut plexity_score: i32,
-    mut cyclomatic_count: i32
+    mut cyclomatic_count: i32,
 ) -> (i32, i32, i32, i32) {
     for i in 0..node.child_count() {
         node_count += 1;
@@ -137,7 +141,7 @@ fn unpack_node(
             current_depth + 1,
             maximum_depth,
             plexity_score,
-            cyclomatic_count
+            cyclomatic_count,
         );
     }
 
