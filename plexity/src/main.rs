@@ -85,7 +85,7 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     let plexity_score_float = plexity_score as f32;
     let node_count_float = node_count as f32;
     println!(
-        "  - Average depth across syntax tree: {}",
+        "  - Average depth across syntax tree: {:.2}",
         plexity_score_float / node_count_float
     )
 }
