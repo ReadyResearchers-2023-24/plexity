@@ -145,7 +145,14 @@ fn unpack_node(
 }
 
 fn cyclomatic_check(s_expression: String) -> bool {
-    return s_expression.starts_with("(if");
+    return s_expression.starts_with("(if_statement")
+        || s_expression.starts_with("(elif_clause")
+        || s_expression.starts_with("(for_statement")
+        || s_expression.starts_with("(while_statement")
+        || s_expression.starts_with("(except_clause")
+        || s_expression.starts_with("(with_statement")
+        || s_expression.starts_with("(assert_statement")
+        || s_expression.starts_with("(list_comprehension");
 }
 
 fn main() {
