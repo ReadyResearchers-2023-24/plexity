@@ -68,12 +68,14 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     let current_depth: i32 = 0;
     let starting_maximum_depth: i32 = 0;
     let concluding_maximum_depth: i32;
-    (node_count, concluding_maximum_depth, plexity_score) = unpack_node(
+    let mut cyclomatic_count: i32 = 0;
+    (node_count, concluding_maximum_depth, plexity_score, cyclomatic_count) = unpack_node(
         root_node,
         node_count,
         current_depth,
         starting_maximum_depth,
         plexity_score,
+        cyclomatic_count
     );
     println!("\n\n============ PLEXITY SCORECARD ============\n");
     println!("  - Number of nodes found in tree: {}", node_count);
@@ -87,7 +89,9 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
     println!(
         "  - Average depth across syntax tree: {:.2}",
         plexity_score_float / node_count_float
-    )
+    );
+    println!(
+        "  - Cyclomatic complexity: {}", cyclomatic_count +1);
 }
 
 fn unpack_node(
@@ -96,7 +100,8 @@ fn unpack_node(
     current_depth: i32,
     mut maximum_depth: i32,
     mut plexity_score: i32,
-) -> (i32, i32, i32) {
+    mut cyclomatic_count: i32
+) -> (i32, i32, i32, i32) {
     for i in 0..node.child_count() {
         node_count += 1;
         let child = node.child(i).unwrap();
@@ -106,29 +111,41 @@ fn unpack_node(
             maximum_depth = current_depth;
         };
 
+        let is_cyclomatic = cyclomatic_check(child.to_sexp());
+
+        if is_cyclomatic {
+            cyclomatic_count += 1;
+        }
+
         // Print node ranges (a sanity check to ultimately be removed)
         println!(
-            "#{} | depth:{}/{} | beg:{} end:{} | s-exp: {}",
+            "#{} | depth:{}/{} | beg:{} end:{} | s-exp: {} | cyclo?: {}",
             node_count,
             current_depth,
             maximum_depth,
             child_range.start_point,
             child_range.end_point,
-            child.to_sexp()
+            child.to_sexp(),
+            is_cyclomatic
         );
 
         plexity_score += current_depth;
 
-        (node_count, maximum_depth, plexity_score) = unpack_node(
+        (node_count, maximum_depth, plexity_score, cyclomatic_count) = unpack_node(
             child,
             node_count,
             current_depth + 1,
             maximum_depth,
             plexity_score,
+            cyclomatic_count
         );
     }
 
-    return (node_count, maximum_depth, plexity_score);
+    return (node_count, maximum_depth, plexity_score, cyclomatic_count);
+}
+
+fn cyclomatic_check(s_expression: String) -> bool {
+    return s_expression.starts_with("(if");
 }
 
 fn main() {
