@@ -1,3 +1,6 @@
+/*  A module for creating an abstract syntax tree from input source code
+and evaluating the resultant tree's complexity.  */
+
 use std::env;
 use std::fs;
 use std::process;
@@ -174,4 +177,19 @@ fn main() {
     let parser: Parser = select_parser(config.language);
 
     traverse_tree(file_contents, parser);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_read_file() {
+        let full_result = read_file("src/main.rs".to_string());
+        let partial_result = &full_result[0..49];
+        assert_eq!(
+            partial_result,
+            "/*  A module for creating an abstract syntax tree"
+        );
+    }
 }
