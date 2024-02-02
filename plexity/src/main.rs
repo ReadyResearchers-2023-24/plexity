@@ -14,7 +14,7 @@ struct Config {
 impl Config {
     fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
-            return Err("both an input filepath and a programming language must be entered as CLI arguments.");
+            return Err("Both an input filepath and a programming language must be entered as CLI arguments.");
         }
 
         let filepath = args[1].clone();
@@ -38,7 +38,6 @@ fn select_parser(language: String) -> Parser {
     let mut parser: Parser = Parser::new();
 
     println!("Selected programming language grammar: {}", language);
-    println!();
 
     match language.as_str() {
         "c" => parser.set_language(tree_sitter_c::language()).unwrap(),
@@ -57,7 +56,6 @@ fn select_parser(language: String) -> Parser {
         // Need to do something about this "wildcard" match statement (required by compiler)
         &_ => parser.set_language(tree_sitter_rust::language()).unwrap(),
     }
-
     return parser;
 }
 
@@ -191,5 +189,14 @@ mod tests {
             partial_result,
             "/*  A module for creating an abstract syntax tree"
         );
+    }
+
+    #[test]
+    fn test_select_parser_c() {
+        let input_language = "c".to_string();
+        let result_language = &Some(tree_sitter_c::language());
+        assert!(
+            select_parser(input_language).language().eq(result_language)
+        )
     }
 }
