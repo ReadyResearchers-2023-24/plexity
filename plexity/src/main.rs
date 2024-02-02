@@ -195,80 +195,62 @@ mod tests {
     fn test_select_parser_c() {
         let input_language = "c".to_string();
         let result_language = &Some(tree_sitter_c::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_dockerfile() {
         let input_language = "dockerfile".to_string();
         let result_language = &Some(tree_sitter_dockerfile::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_java() {
         let input_language = "java".to_string();
         let result_language = &Some(tree_sitter_java::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_javascript() {
         let input_language = "javascript".to_string();
         let result_language = &Some(tree_sitter_javascript::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_json() {
         let input_language = "json".to_string();
         let result_language = &Some(tree_sitter_json::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_markdown() {
         let input_language = "markdown".to_string();
         let result_language = &Some(tree_sitter_md::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_python() {
         let input_language = "python".to_string();
         let result_language = &Some(tree_sitter_python::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_rust() {
         let input_language = "rust".to_string();
         let result_language = &Some(tree_sitter_rust::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 
     #[test]
     fn test_select_parser_toml() {
         let input_language = "toml".to_string();
         let result_language = &Some(tree_sitter_toml::language());
-        assert!(
-            select_parser(input_language).language().eq(result_language)
-        )
+        assert!(select_parser(input_language).language().eq(result_language))
     }
 }
