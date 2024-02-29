@@ -42,6 +42,7 @@ Currently, this tool supports the below programming languages, with the goal to 
 * Python
 * Rust
 * TOML
+* TypeScript
 
 ## Collected Data
 
