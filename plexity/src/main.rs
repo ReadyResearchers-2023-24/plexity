@@ -45,6 +45,7 @@ fn select_parser(language: String) -> Parser {
             .set_language(tree_sitter_dockerfile::language())
             .unwrap(),
         "gitattributes" => parser.set_language(tree_sitter_gitattributes::language()).unwrap(),
+        "html" => parser.set_language(tree_sitter_html::language()).unwrap(),
         "java" => parser.set_language(tree_sitter_java::language()).unwrap(),
         "javascript" => parser
             .set_language(tree_sitter_javascript::language())

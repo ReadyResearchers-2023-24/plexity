@@ -35,6 +35,7 @@ Currently, this tool supports the below programming languages, with the goal to 
 * C
 * Dockerfile
 * Gitattributes
+* HTML
 * Java
 * JavaScript
 * JSON
