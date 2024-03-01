@@ -18,6 +18,7 @@ dependencies = [
  "cc",
  "tree-sitter",
  "tree-sitter-c",
+ "tree-sitter-css",
  "tree-sitter-dockerfile",
  "tree-sitter-gitattributes",
  "tree-sitter-html",
@@ -96,6 +97,16 @@ name = "tree-sitter-c"
 version = "0.20.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "30b03bdf218020057abee831581a74bff8c298323d6c6cd1a70556430ded9f4b"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
+name = "tree-sitter-css"
+version = "0.20.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c3306ddefa1d2681adda2613d11974ffabfbeb215e23235da6c862f3493a04fd"
 dependencies = [
  "cc",
  "tree-sitter",
