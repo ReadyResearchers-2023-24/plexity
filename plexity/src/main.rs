@@ -53,6 +53,7 @@ fn select_parser(language: String) -> Parser {
             .unwrap(),
         "json" => parser.set_language(tree_sitter_json::language()).unwrap(),
         "markdown" => parser.set_language(tree_sitter_md::language()).unwrap(),
+        "php" => parser.set_language(tree_sitter_php::language_php()).unwrap(),
         "python" => parser.set_language(tree_sitter_python::language()).unwrap(),
         "rust" => parser.set_language(tree_sitter_rust::language()).unwrap(),
         "toml" => parser.set_language(tree_sitter_toml::language()).unwrap(),
