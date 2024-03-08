@@ -33,6 +33,7 @@ The `data/python/hello-world.py` and `python` arguments can be replaced with a r
 Currently, this tool supports the below programming languages, with the goal to expand this to include the wide ecosystem of open source `tree-sitter` grammars currently available. The currently supported languages/filetypes are:
 
 * C
+* C++
 * CSS
 * Dockerfile
 * Gitattributes

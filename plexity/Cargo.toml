@@ -12,6 +12,7 @@ cc = "*"
 [dependencies]
 tree-sitter = "0.20.10"
 tree-sitter-c = "0.20.6"
+tree-sitter-cpp = "0.20.5"
 tree-sitter-css = "0.20.0"
 tree-sitter-dockerfile = "0.1.0"
 tree-sitter-gitattributes = "0.1.6"
