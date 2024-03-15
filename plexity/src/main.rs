@@ -46,7 +46,9 @@ fn select_parser(language: String) -> Parser {
         "dockerfile" => parser
             .set_language(tree_sitter_dockerfile::language())
             .unwrap(),
-        "gitattributes" => parser.set_language(tree_sitter_gitattributes::language()).unwrap(),
+        "gitattributes" => parser
+            .set_language(tree_sitter_gitattributes::language())
+            .unwrap(),
         "html" => parser.set_language(tree_sitter_html::language()).unwrap(),
         "java" => parser.set_language(tree_sitter_java::language()).unwrap(),
         "javascript" => parser
@@ -54,11 +56,15 @@ fn select_parser(language: String) -> Parser {
             .unwrap(),
         "json" => parser.set_language(tree_sitter_json::language()).unwrap(),
         "markdown" => parser.set_language(tree_sitter_md::language()).unwrap(),
-        "php" => parser.set_language(tree_sitter_php::language_php()).unwrap(),
+        "php" => parser
+            .set_language(tree_sitter_php::language_php())
+            .unwrap(),
         "python" => parser.set_language(tree_sitter_python::language()).unwrap(),
         "rust" => parser.set_language(tree_sitter_rust::language()).unwrap(),
         "toml" => parser.set_language(tree_sitter_toml::language()).unwrap(),
-        "typescript" => parser.set_language(tree_sitter_typescript::language_typescript()).unwrap(),
+        "typescript" => parser
+            .set_language(tree_sitter_typescript::language_typescript())
+            .unwrap(),
         // Need to do something about this "wildcard" match statement (required by compiler)
         &_ => parser.set_language(tree_sitter_python::language()).unwrap(),
     }
