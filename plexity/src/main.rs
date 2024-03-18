@@ -71,7 +71,7 @@ fn select_parser(language: String) -> Parser {
     return parser;
 }
 
-fn traverse_tree(source_code: String, mut parser: Parser) {
+fn traverse_tree(source_code: String, mut parser: Parser, language: String) {
     let parse_tree: Tree = parser.parse(source_code, None).unwrap();
     let root_node: Node = parse_tree.root_node();
 
@@ -108,7 +108,9 @@ fn traverse_tree(source_code: String, mut parser: Parser) {
         "  - Average depth across syntax tree: {:.2}",
         plexity_score_float / node_count_float
     );
-    println!("  - Cyclomatic complexity: {}", cyclomatic_count + 1);
+    if language == "python" {
+        println!("  - Cyclomatic complexity: {}", cyclomatic_count + 1);
+    }
 }
 
 fn unpack_node(
@@ -184,9 +186,10 @@ fn main() {
     });
 
     let file_contents: String = read_file(config.filepath);
-    let parser: Parser = select_parser(config.language);
+    let language: String = config.language;
+    let parser: Parser = select_parser(language.clone());
 
-    traverse_tree(file_contents, parser);
+    traverse_tree(file_contents, parser, language);
 }
 
 #[cfg(test)]
