@@ -38,6 +38,7 @@ fn select_parser(language: String) -> Parser {
     let mut parser: Parser = Parser::new();
 
     println!("Selected programming language grammar: {}", language);
+    println!();
 
     match language.as_str() {
         "c" => parser.set_language(tree_sitter_c::language()).unwrap(),
@@ -101,7 +102,7 @@ fn traverse_tree(source_code: String, mut parser: Parser, language: String) {
         "  - Maximum depth of syntax tree: {}",
         concluding_maximum_depth
     );
-    println!("  - Combined weights of all nodes: {}", plexity_score);
+    println!("  - Combined depths of all nodes: {}", plexity_score);
     let plexity_score_float = plexity_score as f32;
     let node_count_float = node_count as f32;
     println!(
